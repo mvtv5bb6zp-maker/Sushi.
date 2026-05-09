@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<head>
+    <title>Sushi</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Fredoka:wght@500&display=swap" rel="stylesheet">
+<style>
+body{
+    margin: 0;
+    background: #ceaf81;
+    color: white;
+    font-family: 'Nunito';
+}
+h1{
+    font-family: 'Fredoka';
+    text-align: center;
+}
+#geldSchrift{
+    text-align: center;
+    font-size: 20px;
+}
+#geld{
+    text-align: center;
+    margin-top: 0px;
+    font-size: 30px;
+}
+#küche{
+    text-align: center;
+}
+#sushiButton{
+    background: rgb(255, 239, 170);
+    color: black;
+    border: none;
+    cursor: pointer;
+    padding: 60px 90px 60px 90px;
+    border-radius: 100px;
+    text-align: center;
+    font-size: 20px;
+    font-family: 'Fredoka';
+}
+#sushiButton:active{
+    background: rgb(231, 217, 154);
+}
+#shop{
+    text-align: center;
+}
+#upgrade1{
+    background: #af956e;    
+}
+#upgrade1Button{
+    background: rgb(255, 239, 170);
+    color: black;
+    border: none;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 100px;
+    text-align: center;
+    font-size: 20px;
+    font-family: 'Fredoka';
+}
+#upgrade2{
+    background: #af956e;    
+}
+#upgrade2Button{
+    background: rgb(255, 239, 170);
+    color: black;
+    border: none;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 100px;
+    text-align: center;
+    font-size: 20px;
+    font-family: 'Fredoka';
+}
+#upgrade3{
+    background: #af956e;    
+}
+#upgrade3Button{
+    background: rgb(255, 239, 170);
+    color: black;
+    border: none;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 100px;
+    text-align: center;
+    font-size: 20px;
+    font-family: 'Fredoka';
+}
+#hochzeit{
+    text-align: center;
+}
+#hochzeitKaufenButton{
+    background: rgb(255, 239, 170);
+    color: black;
+    border: none;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 100px;
+    text-align: center;
+    font-size: 20px;
+    font-family: 'Fredoka';
+}
+</style>
+</head>
+<body>
+<h1>Emily's Shushi Restaurant</h1>
+<div id="geldStatus">
+    <div id="geldSchrift"><b>Geld:</b></div>
+    <div id="geld">0$</div>
+</div>
+<div id="küche">
+    <h2>- Deine Küche -</h2>
+    <div id="SushiPreis">Sushi Preis: 1$</div>
+    <button id="sushiButton" onclick="SushiButtonClick()">Sushi verkaufen (+ 1$)</button>
+</div>
+<div id="shop">
+    <h2>- Shop -</h2>
+    <div id="upgrade1">
+            <b>Reis verbessern</b>
+            <div id="cost">Kostet: 20$</div>
+            <div id="level">Level: 0</div>
+            <div id="beschreibung"><i>Erhöht den Sushi Preis um 1$</i></div>
+            <button id="upgrade1Button" onclick="buyUpgrade1()">Kaufen</button>
+    </div>
+    <br>
+    <div id="upgrade2">
+            <b>Lachs verbessern</b>
+            <div id="cost2">Kostet: 60$</div>
+            <div id="level2">Level: 0</div>
+            <div id="beschreibung2"><i>Erhöht den Sushi Preis um 2$</i></div>
+            <button id="upgrade2Button" onclick="buyUpgrade2()">Kaufen</button>
+    </div>
+    <br>
+    <div id="upgrade3">
+            <b>Koch kaufen</b>
+            <div id="cost3">Kostet: 100$</div>
+            <div id="level3">Level: 0</div>
+            <div id="beschreibung3"><i>Verkauft 1 Sushi pro Sekunde</i></div>
+            <button id="upgrade3Button" onclick="buyUpgrade3()">Kaufen</button>
+    </div>
+</div>
+<br>
+<div id="hochzeit">
+    <h3 id="h3">Hochzeit Kosten: 10000$ (Simon hat schon 5000$ gespart)</h3>
+    <button id="hochzeitKaufenButton" onclick="HochzeitGekauft()">5000$ bezahlen</button>
+</div>
+    
+<script>
+let geld = 0;
+let anzeigeGeld = 0;
+let SushiPreis = 1;
+
+let cost1 = 20;
+let anzeigeCost1 = 20;
+let level1 = 0;
+
+let cost2 = 60;
+let anzeigeCost2 = 60;
+let level2 = 0;
+
+let cost3 = 100;
+let anzeigeCost3 = 100;
+let level3 = 0;
+function update() {
+    anzeigeGeld = Math.floor(geld);
+    anzeigeCost1 = Math.floor(cost1);
+    anzeigeCost2 = Math.floor(cost2);
+    anzeigeCost3 = Math.floor(cost3);
+    document.getElementById("geld").innerText = anzeigeGeld+"$";
+    document.getElementById("SushiPreis").innerText = "Sushi Preis: "+SushiPreis+"$";
+
+    document.getElementById("cost").innerText = "Kostet: "+anzeigeCost1+"$";
+    document.getElementById("level").innerText = "Level: "+level1;
+    document.getElementById("cost2").innerText = "Kostet: "+anzeigeCost2+"$";
+    document.getElementById("level2").innerText = "Level: "+level2;
+    document.getElementById("cost3").innerText = "Kostet: "+anzeigeCost3+"$";
+    document.getElementById("level3").innerText = "Level: "+level3;
+    document.getElementById("beschreibung3").innerText = "Verkauft "+level3+" Sushi pro Sekunde";
+    if(level3 == 0){
+        document.getElementById("beschreibung3").innerText = "Verkauft 1 Sushi pro Sekunde";
+    }
+}
+setInterval(update, 100);
+function buyUpgrade1(){
+    if(geld >= cost1){
+        geld = geld - cost1;
+        SushiPreis++;
+        level1++;
+        cost1 = 20 * (1.15 ** level1);
+    }
+}
+function buyUpgrade2(){
+    if(geld >= cost2){
+        geld = geld - cost2;
+        SushiPreis = SushiPreis + 2;
+        level2++;
+        cost2 = 60 * (1.18 ** level2);
+    }
+}
+function buyUpgrade3(){
+    if(geld >= cost3){
+        geld = geld - cost3;
+
+        level3++;
+        cost3 = 100 * (1.15 ** level3);
+    }
+}
+function SushiButtonClick(){
+    geld = geld + SushiPreis;
+}
+function passivesGeld(){
+    geld = geld + level3*SushiPreis;
+}
+setInterval(passivesGeld, 1000)
+function HochzeitGekauft(){
+    if(geld >= 5000){
+        geld = geld - 5000;
+        alert("Du hast die Hochzeit bezahlt :)");
+        document.getElementById("hochzeitKaufenButton").style.display = "none";
+        document.getElementById("h3").style.display = "none";
+    }
+}
+</script>
+</body>
+</html>
